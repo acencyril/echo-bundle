@@ -1,0 +1,32 @@
+# Echo's texts (domain "echo"). Add your own events as echo.event.<name> in your
+# translations/echo.en.yaml, or set a "label" per event in config/packages/echo.yaml.
+echo:
+    event:
+        page_view: Page views
+        signup: Sign-up
+        login: Sign-in
+        contact: Contact message
+        lead: New contact
+        order: Order
+        checkout: Checkout started
+        payment: Payment
+        subscription: Subscription
+        cancellation: Cancellation
+        refund: Refund
+        trial: Trial started
+        error: Error
+    mail:
+        event:
+            subject: '[%site%] %label%: %summary%'
+            subject_bare: '[%site%] %label%'
+        admin: 'Admin: %url%'
+        footer: 'Echo, for %site%. What you receive is set in config/packages/echo.yaml.'
+    digest:
+        subject: '[%site%] %date%: %figures%'
+        title: 'Your day of %date%'
+        counter: '%label%: %count%'
+        notable: 'Notable events'
+        more: '… and %count% more.'
+        held: '%count% of them not emailed at the time (quiet hours or hourly limit).'
+    'yes': 'yes'
+    'no': 'no'

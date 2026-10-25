@@ -1,0 +1,4 @@
+# An application adding the label of its own event.
+echo:
+    event:
+        quote_request: Quote request

@@ -1,0 +1,62 @@
+{
+    "name": "acencyril/echo-bundle",
+    "type": "symfony-bundle",
+    "description": "Emails the site owner at each important step of the funnel (signup, payment...), plus a morning digest of yesterday's counters, so the owner never has to open the admin.",
+    "keywords": [
+        "symfony",
+        "notifications",
+        "owner",
+        "funnel",
+        "digest",
+        "email",
+        "alerts",
+        "analytics"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cyril",
+            "homepage": "https://github.com/acencyril"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "doctrine/dbal": "^3.6 || ^4.0",
+        "doctrine/doctrine-bundle": "^2.11",
+        "doctrine/orm": "^2.17 || ^3.0",
+        "psr/log": "^2.0 || ^3.0",
+        "symfony/clock": "^6.4 || ^7.0 || ^8.0",
+        "symfony/config": "^6.4 || ^7.0 || ^8.0",
+        "symfony/console": "^6.4 || ^7.0 || ^8.0",
+        "symfony/dependency-injection": "^6.4 || ^7.0 || ^8.0",
+        "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-foundation": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-kernel": "^6.4 || ^7.0 || ^8.0",
+        "symfony/mailer": "^6.4 || ^7.0 || ^8.0",
+        "symfony/translation": "^6.4 || ^7.0 || ^8.0"
+    },
+    "suggest": {
+        "symfony/messenger": "Dispatch an EchoEvent on the bus, synchronously or through an async transport"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acencyril\\EchoBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.5",
+        "symfony/messenger": "^6.4 || ^7.0 || ^8.0",
+        "symfony/yaml": "^6.4 || ^7.0 || ^8.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Acencyril\\EchoBundle\\Tests\\": "tests/"
+        }
+    }
+}
