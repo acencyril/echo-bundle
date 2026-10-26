@@ -192,9 +192,9 @@ Echo, for My site. What you receive is set in config/packages/echo.yaml.
 
 | Key | Default | |
 |---|---|---|
-| `owner` | required | Who receives the emails. |
-| `sender` | required | The From address; the name shown is `site_name`. |
-| `site_name` | required | In every subject, so several sites can share an inbox. |
+| `owner` | — | Who receives the emails. Unset: events are counted, no email is sent (a warning is logged). |
+| `sender` | — | The From address; the name shown is `site_name`. Unset: as for `owner`. |
+| `site_name` | `Echo` | In every subject, so several sites can share an inbox. |
 | `locale` | `en` | `en` or `fr`. |
 | `timezone` | PHP's | Days, times and quiet hours. |
 | `admin_url` | — | A link at the end of every email. |

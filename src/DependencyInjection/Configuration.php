@@ -12,6 +12,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * config/packages/echo.yaml. Addresses are not checked here: they usually come from
  * %env()%, unknown until runtime. A wrong address only makes the emails fail, and a
  * failed email is logged, never thrown.
+ *
+ * Nothing is required: installed without its recipe (Flex registers the bundle before
+ * echo.yaml exists), the application still boots; events are counted, and no email is
+ * sent until "owner" and "sender" are set (a warning says so).
  */
 final class Configuration implements ConfigurationInterface
 {
@@ -25,11 +29,11 @@ final class Configuration implements ConfigurationInterface
 
         $root
             ->children()
-                ->scalarNode('owner')->isRequired()->cannotBeEmpty()
-                    ->info('Who receives the emails: the site owner.')->end()
-                ->scalarNode('sender')->isRequired()->cannotBeEmpty()
-                    ->info('The From address, one your mail provider accepts for this site.')->end()
-                ->scalarNode('site_name')->isRequired()->cannotBeEmpty()
+                ->scalarNode('owner')->defaultNull()
+                    ->info('Who receives the emails: the site owner. Unset: no email is sent.')->end()
+                ->scalarNode('sender')->defaultNull()
+                    ->info('The From address, one your mail provider accepts for this site. Unset: no email is sent.')->end()
+                ->scalarNode('site_name')->defaultValue('Echo')
                     ->info('Shown in every subject, so the emails of several sites can be told apart.')->end()
                 ->enumNode('locale')->values(['fr', 'en'])->defaultValue('en')->end()
                 ->scalarNode('timezone')->defaultNull()

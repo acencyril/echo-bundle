@@ -198,9 +198,9 @@ Echo, pour Mon site. Ce que vous recevez se règle dans config/packages/echo.yam
 
 | Clé | Défaut | |
 |---|---|---|
-| `owner` | requis | Qui reçoit les e-mails. |
-| `sender` | requis | L'adresse d'expédition ; le nom affiché est `site_name`. |
-| `site_name` | requis | Dans chaque objet, pour que plusieurs sites partagent une boîte. |
+| `owner` | — | Qui reçoit les e-mails. Absent : les événements sont comptés, aucun e-mail n'est envoyé (un avertissement est journalisé). |
+| `sender` | — | L'adresse d'expédition ; le nom affiché est `site_name`. Absent : comme pour `owner`. |
+| `site_name` | `Echo` | Dans chaque objet, pour que plusieurs sites partagent une boîte. |
 | `locale` | `en` | `en` ou `fr`. |
 | `timezone` | celui de PHP | Jours, heures et heures calmes. |
 | `admin_url` | — | Un lien à la fin de chaque e-mail. |

@@ -30,6 +30,17 @@ final class ConfigurationTest extends TestCase
         self::assertSame([], $c['events']);
     }
 
+    public function testNothingIsRequired(): void
+    {
+        // Flex registers the bundle before config/packages/echo.yaml exists (no recipe,
+        // or a contrib recipe not allowed): the application must still boot.
+        $c = self::process([]);
+
+        self::assertNull($c['owner']);
+        self::assertNull($c['sender']);
+        self::assertSame('Echo', $c['site_name']);
+    }
+
     public function testAnEventCanBeJustItsMode(): void
     {
         $c = self::process(self::MINIMAL + ['events' => ['signup' => 'immediate', 'page-view' => ['skip_bots' => true]]]);
@@ -47,7 +58,6 @@ final class ConfigurationTest extends TestCase
 
     public static function invalid(): iterable
     {
-        yield 'no owner' => [['sender' => 'a@b.c', 'site_name' => 'x'], 'owner'];
         yield 'mode' => [self::MINIMAL + ['events' => ['signup' => 'loud']], 'loud'];
         yield 'name' => [self::MINIMAL + ['events' => ['Sign Up' => 'immediate']], 'Event names'];
         yield 'hour' => [self::MINIMAL + ['quiet_hours' => ['from' => '8h']], 'HH:MM'];

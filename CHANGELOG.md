@@ -6,6 +6,16 @@ versioning follows [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.2] — 2026-10-26
+
+### Fixed
+- `composer require acencyril/echo-bundle` no longer fails when Flex registers the
+  bundle before `config/packages/echo.yaml` exists (no recipe applied, e.g. contrib
+  recipes not allowed): `cache:clear` stopped on "The child config "owner" under "echo"
+  must be configured". `owner` and `sender` are now optional: without them events are
+  still counted and no email is sent, with a warning in the log. `site_name` defaults
+  to `Echo`. Found by an end-to-end install on a fresh Symfony 7.3 application.
+
 ## [0.1.1] — 2026-10-26
 
 ### Fixed

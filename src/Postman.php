@@ -201,6 +201,11 @@ final class Postman
     private function deliver(string $subject, array $lines): bool
     {
         $c = $this->settings->config;
+        if ('' === trim((string) ($c['owner'] ?? '')) || '' === trim((string) ($c['sender'] ?? ''))) {
+            $this->logger->warning('Echo: the email "{subject}" was not sent: set "owner" and "sender" in config/packages/echo.yaml.', ['subject' => $subject]);
+
+            return false;
+        }
         $footer = ['', '--'];
         if (!empty($c['admin_url'])) {
             $footer[] = $this->t('echo.mail.admin', ['%url%' => $c['admin_url']]);
@@ -227,7 +232,7 @@ final class Postman
 
     private function t(string $key, array $params = []): string
     {
-        return $this->translator->trans($key, $params + ['%site%' => (string) ($this->settings->config['site_name'] ?? '')], self::DOMAIN, $this->settings->locale());
+        return $this->translator->trans($key, $params + ['%site%' => (string) ($this->settings->config['site_name'] ?? 'Echo')], self::DOMAIN, $this->settings->locale());
     }
 
     private function date(\DateTimeImmutable $at): string
