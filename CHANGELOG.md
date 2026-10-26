@@ -6,6 +6,12 @@ versioning follows [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-10-26
+
+### Fixed
+- Installs on Symfony 8: DoctrineBundle 3 is allowed (`^2.11 || ^3.0`), and the entity
+  mapping no longer sets the namespace alias that DoctrineBundle 3 removed.
+
 ## [0.1.0] — 2026-10-25
 
 First release: the owner's emails of a Symfony site, generalised from the owner

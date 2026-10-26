@@ -33,7 +33,6 @@ final class EchoExtension extends Extension implements PrependExtensionInterface
             'is_bundle' => false,
             'dir' => \dirname(__DIR__).'/Entity',
             'prefix' => 'Acencyril\EchoBundle\Entity',
-            'alias' => 'Echo',
         ]]]]);
     }
 
