@@ -67,10 +67,12 @@ final class TestKernel extends Kernel
             'dbal' => ($url = getenv('ECHO_TEST_DATABASE_URL')) ? ['url' => $url] : ['driver' => 'pdo_sqlite', 'memory' => true],
             'orm' => [
                 'auto_mapping' => false,
+                'controller_resolver' => ['auto_mapping' => false],
+            ] + (self::doctrineBundle2() ? [
+                // DoctrineBundle 2 only: version 3 made these the default and removed the options.
                 'enable_lazy_ghost_objects' => true,
                 'report_fields_where_declared' => true,
-                'controller_resolver' => ['auto_mapping' => false],
-            ],
+            ] : []),
         ]);
         $container->register('logger', MemoryLogger::class)->setPublic(true);
         $container->register('clock', MockClock::class)
@@ -100,5 +102,12 @@ final class TestKernel extends Kernel
                 'healthcheck' => 'ignore',
             ],
         ];
+    }
+
+    private static function doctrineBundle2(): bool
+    {
+        $version = \Composer\InstalledVersions::getVersion('doctrine/doctrine-bundle') ?? '2';
+
+        return version_compare($version, '3.0.0', '<');
     }
 }
